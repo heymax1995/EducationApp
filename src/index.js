@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { Provider } from 'react-redux'
-import App from './components/App.jsx'
+import App from './components/App'
 
-import createStore from './createStore'
+import store from './createStore'
 
-const store = createStore()
+
 
 const Main = () => {
   return (

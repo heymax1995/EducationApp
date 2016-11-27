@@ -5,5 +5,6 @@ import counter from './reducers/counter'
 let rootReducer  = combineReducers({
   counter: counter
 })
+let ctreateStore = createStore(rootReducer)
 
-return createStore(rootReducer)
+export default ctreateStore

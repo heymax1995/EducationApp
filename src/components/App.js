@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   StyleSheet,
   Text,
   View
-} from 'react-native';
+} from 'react-native'
+
+import {incrementCounter} from '../actions/counter'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,15 +29,13 @@ const styles = StyleSheet.create({
 });
 
 class App extends Component {
-  constructor(){
-    console.log('OLOLOLOLO')
-    super()
-    this.state = {count: 0}
+  constructor(props){
+    super(props)
   }
   renderWarnings(){
-    if(this.state.count >= 10){
+    if(this.props.counter >= 10){
       return(
-        <Text>Хватит{this.returnVoskl(this.state.count)}</Text>
+        <Text>Хватит{this.returnVoskl(this.props.counter)}</Text>
       )
     }
   }
@@ -45,14 +46,17 @@ class App extends Component {
     }
     return result
   }
+  incr = () => {
+    this.props.incrementCounter()
+  }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Click it!
         </Text>
-        <Text style={styles.instructions} onPress={() => { this.setState({count: this.state.count + 1 }) }}>
-          {this.state.count}
+        <Text style={styles.instructions} onPress={this.incr}>
+          {this.props.counter}
         </Text>
         {this.renderWarnings()}
       </View>
@@ -60,4 +64,19 @@ class App extends Component {
 
   }
 }
-export default App
+
+const mapStateToProps = (state) => {
+  return {
+    counter: state.counter
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    incrementCounter(){
+      dispatch(incrementCounter())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
