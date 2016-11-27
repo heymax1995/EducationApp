@@ -5,3 +5,4 @@
 Maybe that application will not run, because i may forgot wrote some useful info.
 
 
+ONLY ANDROID
