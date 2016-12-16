@@ -5,7 +5,9 @@
   "scripts": {
     "start-web": "node server/app",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "flow": "node_modules/.bin/flow"
+    "flow": "node_modules/.bin/flow",
+    "flow:stop": "node_modules/.bin/flow stop",
+    "floww": "node_modules/.bin/flow && node_modules/.bin/flow stop"
   },
   "dependencies": {
     "react": "^15.4.1",

@@ -1,7 +1,8 @@
+//@flow
 import {INCREMENT_COUNTER} from '../actions/types'
-const initialState = 0
+const initialState: number = 0
 
-const counter = (state = initialState, action) => {
+const counter = (state:number = initialState, action: Object): number => {
   switch (action.type) {
     case INCREMENT_COUNTER:
       return state + 1

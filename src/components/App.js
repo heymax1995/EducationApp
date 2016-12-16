@@ -1,3 +1,4 @@
+//@flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
@@ -29,6 +30,10 @@ const styles = StyleSheet.create({
 });
 
 class App extends Component {
+  props: {
+      counter: number,
+      incrementCounter: Dispatch
+  }
   constructor(props){
     super(props)
   }
@@ -60,18 +65,22 @@ class App extends Component {
         </Text>
         {this.renderWarnings()}
       </View>
-    );
-
+    )
   }
 }
 
-const mapStateToProps = (state) => {
+type connectType = {
+    counter: string
+}
+const mapStateToProps = (state):connectType => {
   return {
     counter: state.counter
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
+type dispatchType = {
+    incrementCounter: Dispatch
+}
+const mapDispatchToProps = (dispatch): dispatchType => {
   return {
     incrementCounter(){
       dispatch(incrementCounter())
@@ -79,4 +88,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect<connectType, connectType, {}>(mapStateToProps, mapDispatchToProps)(App)
