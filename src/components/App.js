@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 
 import {incrementCounter} from '../actions/counter'
-
+import type { rootStore } from '../createStore'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -70,9 +70,9 @@ class App extends Component {
 }
 
 type connectType = {
-    counter: string
+    counter: number
 }
-const mapStateToProps = (state):connectType => {
+const mapStateToProps = (state: rootStore):connectType => {
   return {
     counter: state.counter
   }
@@ -88,4 +88,4 @@ const mapDispatchToProps = (dispatch): dispatchType => {
   }
 }
 
-export default connect<connectType, connectType, {}>(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps, null)(App)
