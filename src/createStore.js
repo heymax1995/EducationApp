@@ -9,6 +9,3 @@ let rootReducer  = combineReducers({
 export const store = createStore(rootReducer)
 
 
-export type rootStore = {
-    counter: number
-}

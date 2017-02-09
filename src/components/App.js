@@ -6,9 +6,9 @@ import {
   Text,
   View
 } from 'react-native'
-
+import { CheckboxGroup } from 'react-native-material-design'
 import {incrementCounter} from '../actions/counter'
-import type { rootStore } from '../createStore'
+import type { rootStore } from '../flow/types'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -56,15 +56,26 @@ class App extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Click it!
-        </Text>
-        <Text style={styles.instructions} onPress={this.incr}>
-          {this.props.counter}
-        </Text>
-        {this.renderWarnings()}
-      </View>
+        <View style={styles.container}>
+            <Text style={styles.welcome}>
+                Click it!
+            </Text>
+            <Text style={styles.instructions} onPress={this.incr}>
+                {this.props.counter}
+            </Text>
+            {this.renderWarnings()}
+            <CheckboxGroup
+                onSelect={(values) => { console.log(`${values} are currently selected`)}}
+                checked={[1, 3]}
+                items={[{
+                value: 1, label: 'Checkbox 1'
+            }, {
+                value: 2, label: 'Checkbox 2'
+            }, {
+                value: 3, label: 'Checkbox 3 Disabled', disabled: true
+            }]}
+            />
+        </View>
     )
   }
 }
